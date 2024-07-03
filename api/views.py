@@ -21,7 +21,7 @@ def getList(request):
     list = personDefaultFields.copy()
     list.pop()
     print(list)
-    persons = Person.objects.all().values('id', 'full_name', 'age')
+    persons = Person.objects.all()
     result_page = paginator.paginate_queryset(persons, request)
     result = PersonSerializers(result_page, many=True)
     return paginator.get_paginated_response({"data": result.data, "message": "List"})
